@@ -1,0 +1,94 @@
+<%= simple_form_for @order, :html => {:class => "form-inline"} do |f| %>
+<input type="hidden" id="delivery_fee" value = "<%=@week.delivery_fee %>"</input>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% @order.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+	<div class="row">
+		<div class = "span8 offset1">
+			<table class = "table table-bordered">
+				<thead>
+					<tr>
+						<th>Day</th>
+						<th>Offering</th>
+						<th>Cost</th>
+						<th># Meals</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Monday</td>
+						<td><%= @week.monday_item %></td>
+						<td id = "monday_price"><%= @week.monday_price %></td>
+						<td><%= f.number_field :monday_orders, :class => "span1"%></td> 
+					</tr>
+					<tr>
+						<td>Tuesday</td>
+						<td><%= @week.tuesday_item %></td>
+						<td id = "tuesday_price"><%= @week.tuesday_price %></td>
+						<td><%= f.number_field :tuesday_orders, :class => "span1"%></td> 
+					</tr>
+					<tr>
+						<td>Wednesday</td>
+						<td><%= @week.wednesday_item %></td>
+						<td id = "wednesday_price"><%= @week.wednesday_price %></td>
+						<td><%= f.number_field :wednesday_orders, :class => "span1"%></td> 
+					</tr>
+					<tr>
+						<td>Thursday</td>
+						<td><%= @week.thursday_item %></td>
+						<td id = "thursday_price"><%= @week.thursday_price %></td>
+						<td><%= f.number_field :thursday_orders, :class => "span1"%></td> 
+					</tr>
+					
+					<tr>
+						<td><em>     Delivery Fees</em></td>
+						<td>$<%=@week.delivery_fee%> per day </td>
+						<td id = "delivery_fees">$0.00</td>
+						<td></td> 
+					</tr>
+					<tr>
+						<td><strong>GRAND TOTAL:</strong></td>
+						<td></td>
+						<td id = "total">0.00</td>
+						<td></td> 
+					</tr>
+				</tbody>
+			</table>
+			
+			
+  
+
+  
+   
+    
+ 
+    <%= f.input :address %>
+   
+
+  
+    <%= f.input :email %>
+    
+
+  
+    <%= f.input :phone %>
+   
+
+  
+    <%= f.input :name %>
+   
+  
+
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

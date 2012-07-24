@@ -1,0 +1,41 @@
+<h1>Listing orders</h1>
+
+<table>
+  <tr>
+    <th>Monday orders</th>
+    <th>Tuesday orders</th>
+    <th>Wednesday orders</th>
+    <th>Thursday orders</th>
+    <th>Address</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Name</th>
+    <th>Customer</th>
+    <th>Week</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @orders.each do |order| %>
+  <tr>
+    <td><%= order.monday_orders %></td>
+    <td><%= order.tuesday_orders %></td>
+    <td><%= order.wednesday_orders %></td>
+    <td><%= order.thursday_orders %></td>
+    <td><%= order.address %></td>
+    <td><%= order.email %></td>
+    <td><%= order.phone %></td>
+    <td><%= order.name %></td>
+    <td><%= order.customer %></td>
+    <td><%= order.week %></td>
+    <td><%= link_to 'Show', order %></td>
+    <td><%= link_to 'Edit', edit_order_path(order) %></td>
+    <td><%= link_to 'Destroy', order, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Order', new_order_path %>

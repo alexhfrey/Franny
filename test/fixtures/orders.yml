@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  monday_orders: 1
+  tuesday_orders: 1
+  wednesday_orders: 1
+  thursday_orders: 1
+  address: MyText
+  email: MyString
+  phone: MyString
+  name: MyString
+  customer: 
+  week: 
+
+two:
+  monday_orders: 1
+  tuesday_orders: 1
+  wednesday_orders: 1
+  thursday_orders: 1
+  address: MyText
+  email: MyString
+  phone: MyString
+  name: MyString
+  customer: 
+  week: 

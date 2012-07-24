@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Monday orders:</b>
+  <%= @order.monday_orders %>
+</p>
+
+<p>
+  <b>Tuesday orders:</b>
+  <%= @order.tuesday_orders %>
+</p>
+
+<p>
+  <b>Wednesday orders:</b>
+  <%= @order.wednesday_orders %>
+</p>
+
+<p>
+  <b>Thursday orders:</b>
+  <%= @order.thursday_orders %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @order.address %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @order.email %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @order.phone %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @order.name %>
+</p>
+
+<p>
+  <b>Customer:</b>
+  <%= @order.customer %>
+</p>
+
+<p>
+  <b>Week:</b>
+  <%= @order.week %>
+</p>
+
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>

@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Start date:</b>
+  <%= @week.start_date %>
+</p>
+
+<p>
+  <b>Monday item:</b>
+  <%= @week.monday_item %>
+</p>
+
+<p>
+  <b>Monday price:</b>
+  <%= @week.monday_price %>
+</p>
+
+<p>
+  <b>Tuesday item:</b>
+  <%= @week.tuesday_item %>
+</p>
+
+<p>
+  <b>Tuesday price:</b>
+  <%= @week.tuesday_price %>
+</p>
+
+<p>
+  <b>Wednesday item:</b>
+  <%= @week.wednesday_item %>
+</p>
+
+<p>
+  <b>Wednesday price:</b>
+  <%= @week.wednesday_price %>
+</p>
+
+<p>
+  <b>Thursday item:</b>
+  <%= @week.thursday_item %>
+</p>
+
+<p>
+  <b>Thursday price:</b>
+  <%= @week.thursday_price %>
+</p>
+
+<p>
+  <b>Delivery fee:</b>
+  <%= @week.delivery_fee %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @week.comment %>
+</p>
+
+
+<%= link_to 'Edit', edit_week_path(@week) %> |
+<%= link_to 'Back', weeks_path %>

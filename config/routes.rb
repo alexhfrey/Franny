@@ -1,4 +1,12 @@
 FrannysKitchen::Application.routes.draw do
+  resources :settings
+
+  resources :orders
+
+  resources :weeks
+
+  resources :customers
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
