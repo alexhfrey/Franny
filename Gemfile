@@ -7,7 +7,7 @@ gem 'bootstrap-sass', '2.0.0'
 
 gem 'simple_form'
 
-gem 'sqlite3'
+gem 'pg'
 
 gem 'json'
 
