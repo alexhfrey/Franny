@@ -1,5 +1,5 @@
 	
-  <h1>Menu for <%=@week.start_date%> to <%=@week.start_date + 3.days %> </h1>
+  <h2>Menu for <%=@week.start_date.strftime("%B %e")%> to <%=(@week.start_date + 3.days). strftime("%B %e")%> </h2>
 
 	<%= render 'form' %>
 

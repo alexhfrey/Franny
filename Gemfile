@@ -8,12 +8,18 @@ gem 'bootstrap-sass', '2.0.0'
 gem 'simple_form'
 
 group :development do
-gem 'sqlite3'
+	gem 'sqlite3'
 end
 
 group :production do
-gem 'pg'
+	gem 'pg'
 end
+
+gem 'fastercsv'
+gem 'omniauth-identity'
+gem 'bcrypt-ruby', '~> 3.0.0'
+
+
 
 gem 'json'
 

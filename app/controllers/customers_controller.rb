@@ -9,6 +9,10 @@ class CustomersController < ApplicationController
       format.json { render :json => @customers }
     end
   end
+  
+  def admin
+	@week = Week.last
+  end
 
   # GET /customers/1
   # GET /customers/1.json
@@ -24,7 +28,8 @@ class CustomersController < ApplicationController
   # GET /customers/new
   # GET /customers/new.json
   def new
-    @customer = Customer.new
+    @customer = env['omniauth.identity'] 
+	@customer ||= Customer.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -44,7 +49,7 @@ class CustomersController < ApplicationController
 
     respond_to do |format|
       if @customer.save
-        format.html { redirect_to @customer, :notice => 'Customer was successfully created.' }
+        format.html { redirect_to '/auth/identity/register', :notice => 'Customer was successfully created.' }
         format.json { render :json => @customer, :status => :created, :location => @customer }
       else
         format.html { render :action => "new" }

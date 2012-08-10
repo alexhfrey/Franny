@@ -29,6 +29,7 @@ class WeeksController < ApplicationController
 	@week.tuesday_price = Setting.find(2).value
 	@week.wednesday_price = Setting.find(3).value
 	@week.thursday_price = Setting.find(4).value
+	@week.delivery_fee = Setting.find(5).value
 	
     respond_to do |format|
       format.html # new.html.erb

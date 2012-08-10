@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Thanks for your order <%= @order.name %></h1>
+    <p>
+      We have you down for <%= @order.monday_orders %> Monday orders, <%= @order.tuesday_orders %> Tuesday orders,
+	  <%= @order.wednesday_orders %> Wednesday orders, and <%= @order.thursday_orders %> Thursday orders. 
+    </p>
+    <p>
+      Your total order, including delivery charges, comes to <strong><%= @order.amount %></strong>. 
+    </p>
+    <p>Full payment is due with the first delivery of the week. Checks should be made out to Frances Sanahuja. You can leave
+	them at your front door for us to pick up, or you can mail them to 147 Dublin Street, San Francisco, CA 94112. </p>
+  </body>
+</html>

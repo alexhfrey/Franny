@@ -16,7 +16,14 @@
           <nav>
             <ul class="nav pull-right">
               <li><%= link_to "Home",    '#' %></li>
-              <li><%= link_to "Sign in", '#' %></li>
+			  <% if current_user %>
+				<li><%= link_to current_user.name + '\'s Account', current_user %> </li>
+				<li><%= link_to "Sign out", signout_path %></li>	
+			  <% else %>
+				<li><%= link_to "Sign in", signin_path %></li>
+				<li><%= link_to "Sign up", '/customers/new' %></li>
+              <% end %> 			  
+              
             </ul>
           </nav>
         </div>

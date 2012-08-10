@@ -1,12 +1,24 @@
 FrannysKitchen::Application.routes.draw do
   resources :settings
+  
 
   resources :orders
 
-  resources :weeks
+  resources :weeks do
+	resources :orders
+  end
 
-  resources :customers
+  resources :customers do
+	resources :orders 
+	get 'admin'
+  end
+  
+  resources :identities
 
+  match "/admin" => "customers#admin"
+  match "/auth/:provider/callback" => "sessions#create"
+  match "/signout" => "sessions#destroy", :as => :signout
+   match "/signin" => "sessions#new", :as => :signin
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -56,7 +68,7 @@ FrannysKitchen::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+   root :to => 'orders#home'
 
   # See how all your routes lay out with "rake routes"
 

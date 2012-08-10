@@ -19,10 +19,10 @@ $(document).ready(function(){
 									   + (($("#order_wednesday_orders").val() > 0 )?1:0)
 									   + (($("#order_thursday_orders").val() > 0 )?1:0))
 									   * $("#delivery_fee").val();
-		$("#total").html(formatCurrency($("#order_monday_orders").val() * $("#monday_price").html()
-		                               + $("#order_tuesday_orders").val() * $("#tuesday_price").html()
-									   + $("#order_wednesday_orders").val() * $("#wednesday_price").html()
-									   + $("#order_thursday_orders").val() * $("#thursday_price").html()
+		$("#total").html(formatCurrency($("#order_monday_orders").val() * $("#monday_price").html().replace("$","")
+		                               + $("#order_tuesday_orders").val() * $("#tuesday_price").html().replace("$","")
+									   + $("#order_wednesday_orders").val() * $("#wednesday_price").html().replace("$","")
+									   + $("#order_thursday_orders").val() * $("#thursday_price").html().replace("$","")
 									    + deliveryFees));
 		$("#delivery_fees").html(formatCurrency(deliveryFees));
 		});

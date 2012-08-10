@@ -13,6 +13,7 @@
   <% end %>
 	<div class="row">
 		<div class = "span8 offset1">
+		<div><%= @week.comment.html_safe %> </div> <br/>
 			<table class = "table table-bordered">
 				<thead>
 					<tr>
@@ -26,26 +27,26 @@
 					<tr>
 						<td>Monday</td>
 						<td><%= @week.monday_item %></td>
-						<td id = "monday_price"><%= @week.monday_price %></td>
-						<td><%= f.number_field :monday_orders, :class => "span1"%></td> 
+						<td id = "monday_price"><%= h number_to_currency @week.monday_price %></td>
+						<td><%= f.number_field :monday_orders, :value => 0, :class => "span1"%></td> 
 					</tr>
 					<tr>
 						<td>Tuesday</td>
 						<td><%= @week.tuesday_item %></td>
-						<td id = "tuesday_price"><%= @week.tuesday_price %></td>
-						<td><%= f.number_field :tuesday_orders, :class => "span1"%></td> 
+						<td id = "tuesday_price"><%= h number_to_currency @week.tuesday_price %></td>
+						<td><%= f.number_field :tuesday_orders, :value => 0, :class => "span1"%></td> 
 					</tr>
 					<tr>
 						<td>Wednesday</td>
 						<td><%= @week.wednesday_item %></td>
-						<td id = "wednesday_price"><%= @week.wednesday_price %></td>
-						<td><%= f.number_field :wednesday_orders, :class => "span1"%></td> 
+						<td id = "wednesday_price"><%= h number_to_currency @week.wednesday_price %></td>
+						<td><%= f.number_field :wednesday_orders, :value => 0, :class => "span1"%></td> 
 					</tr>
 					<tr>
 						<td>Thursday</td>
 						<td><%= @week.thursday_item %></td>
-						<td id = "thursday_price"><%= @week.thursday_price %></td>
-						<td><%= f.number_field :thursday_orders, :class => "span1"%></td> 
+						<td id = "thursday_price"><%= h number_to_currency @week.thursday_price %></td>
+						<td><%= f.number_field :thursday_orders, :value => 0, :class => "span1"%></td> 
 					</tr>
 					
 					<tr>
@@ -68,21 +69,17 @@
 
   
    
-    
- 
-     <%= f.input :address, :input_html =>{:rows => 2} %>
-   
-
-  
-    <%= f.input :email %>
-    
-
-  
+   <% if current_user.nil? %> 
+	<%= f.input :name %>
+    <%= f.input :address, :input_html =>{:rows => 2} %>    
+    <%= f.input :email %>      
     <%= f.input :phone %>
+   <% end %>
+	<%= f.input :instructions, :input_html =>{:rows => 3}  %>
    
 
   
-    <%= f.input :name %>
+ 
    
   
 

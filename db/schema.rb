@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120724182535) do
+ActiveRecord::Schema.define(:version => 20120805001810) do
 
   create_table "customers", :force => true do |t|
     t.string   "name"
@@ -20,6 +20,20 @@ ActiveRecord::Schema.define(:version => 20120724182535) do
     t.integer  "delivery_route"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "password_digest"
+    t.boolean  "remember"
+  end
+
+  create_table "identities", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "phone"
+    t.text     "address"
   end
 
   create_table "orders", :force => true do |t|
@@ -35,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20120724182535) do
     t.integer  "week_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "instructions"
   end
 
   add_index "orders", ["customer_id"], :name => "index_orders_on_customer_id"

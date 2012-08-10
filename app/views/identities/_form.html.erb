@@ -1,10 +1,10 @@
-<%= simple_form_for (@customer, :url => '/auth/identity/register') do |f| %>
-  <% if @customer.errors.any? %>
+<%= simple_form_for (@identity, :url => '/auth/identity/register') do |f| %>
+  <% if @identity.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
+      <h2><%= pluralize(@identity.errors.count, "error") %> prohibited this customer from being saved:</h2>
 
       <ul>
-      <% @customer.errors.full_messages.each do |msg| %>
+      <% @identity.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -24,8 +24,6 @@
 	<%= f.input :password, :as => 'password', :input_html => {:name => 'password'} %>
 	
 	<%= f.input :password_confirmation, :as => 'password', :input_html => {:name => 'password_confirmation'} %>
-	
-	<%= f.input :remember, :label => "Remember me on this computer?" %> <br/> <br/>
 
     <%= f.submit %>
 

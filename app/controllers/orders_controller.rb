@@ -2,10 +2,16 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
-
+	if params[:week_id].present?
+		@week = Week.find(params[:week_id])
+		@orders = @week.orders
+	else
+		@orders = Order.all
+	end
+	
     respond_to do |format|
       format.html # index.html.erb
+	  format.csv { render :text => Order.to_csv(@orders) }
       format.json { render :json => @orders }
     end
   end
@@ -24,8 +30,14 @@ class OrdersController < ApplicationController
   # GET /orders/new
   # GET /orders/new.json
   def new
-    @order = Order.new
-    @week = Week.last
+  
+	if params[:week_id].present?
+		@week = Week.find(params[:week_id])
+	else
+		@week = Week.last
+	end
+	
+	@order = @week.orders.build
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @order }
@@ -39,18 +51,35 @@ class OrdersController < ApplicationController
 
   # POST /orders
   # POST /orders.json
+  
+  def home
+	if current_user
+		redirect_to new_order_path
+	end
+	
+  end
+  
   def create
-    @order = Order.new(params[:order])
-
-    respond_to do |format|
-      if @order.save
-        format.html { redirect_to @order, :notice => 'Order was successfully created.' }
-        format.json { render :json => @order, :status => :created, :location => @order }
-      else
-        format.html { render :action => "new" }
-        format.json { render :json => @order.errors, :status => :unprocessable_entity }
-      end
+	if params[:week_id].present?
+		@week = Week.find(params[:week_id])
+	else
+		@week = Week.last
+	end
+    
+	@order = @week.orders.build(params[:order])
+	if current_user
+		@order.customer_id = current_user.id
+	end
+    
+    if @order.save
+		ConfirmationEmail.order_confirmation(@order).deliver
+		redirect_to @order, :notice => 'Order was successfully created.' 
+      
+    else
+        render :action => "new" 
+  
     end
+  
   end
 
   # PUT /orders/1
