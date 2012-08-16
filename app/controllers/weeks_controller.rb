@@ -25,6 +25,7 @@ class WeeksController < ApplicationController
   # GET /weeks/new.json
   def new
     @week = Week.new
+	@extra = @week.extras.build()
     @week.monday_price = Setting.find(1).value
 	@week.tuesday_price = Setting.find(2).value
 	@week.wednesday_price = Setting.find(3).value

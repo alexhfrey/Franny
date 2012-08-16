@@ -7,6 +7,7 @@
     <th>Phone</th>
     <th>Address</th>
     <th>Delivery route</th>
+	<th>Balance</th>
     <th></th>
     <th></th>
     <th></th>
@@ -19,6 +20,7 @@
     <td><%= customer.phone %></td>
     <td><%= customer.address %></td>
     <td><%= customer.delivery_route %></td>
+	<td> <%= customer.balance %></td>
     <td><%= link_to 'Show', customer %></td>
     <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
     <td><%= link_to 'Destroy', customer, :confirm => 'Are you sure?', :method => :delete %></td>

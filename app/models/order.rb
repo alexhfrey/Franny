@@ -1,6 +1,8 @@
 class Order < ActiveRecord::Base
   belongs_to :customer
   belongs_to :week
+  has_many :extra_orders
+  accepts_nested_attributes_for :extra_orders
   
   def self.to_csv(orders)
 	CSV.generate do |csv|
@@ -15,12 +17,30 @@ class Order < ActiveRecord::Base
 	end
   end
   
+  def extras(num)
+	e = extra_orders.find_by_extra_id(num)
+	if e.blank?
+		0
+	else
+		e.quantity
+	end
+  end
+  
+  def extras_in_words
+     extra_orders . collect { |eo| eo. in_words } .join(", ")
+	 
+  end
+  
   def route
 	customer_id.present? ? customer.route : ""
   end
   
   def amount
 	sub_total + delivery_charge
+  end
+  
+  def email
+	customer_id.present? ? customer.email : read_attribute(:email)
   end
   
   def sub_total
@@ -39,10 +59,7 @@ class Order < ActiveRecord::Base
   end
 	
   
-  def email
-		(defined? customer) ? customer.email : read_attribute(:email)
-  end
-	
+  
 		
   def address
 	customer_id.present? ? customer.address : read_attribute(:address)

@@ -5,6 +5,10 @@ class OrdersController < ApplicationController
 	if params[:week_id].present?
 		@week = Week.find(params[:week_id])
 		@orders = @week.orders
+		@extras = @week.extras
+	elsif params[:customer_id].present?
+		@customer = Customer.find(params[:customer_id])
+		@orders = @customer.orders
 	else
 		@orders = Order.all
 	end
@@ -16,6 +20,12 @@ class OrdersController < ApplicationController
     end
   end
 
+  
+  def update_multiple
+	Order.update(params[:order].keys, params[:order].values)
+	flash[:notice] = "Products updated"
+	redirect_to orders_url
+  end
   # GET /orders/1
   # GET /orders/1.json
   def show
@@ -38,6 +48,7 @@ class OrdersController < ApplicationController
 	end
 	
 	@order = @week.orders.build
+	@extra_order = @order.extra_orders.build
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @order }

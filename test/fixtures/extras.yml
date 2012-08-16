@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  week_id: 1
+  name: MyString
+  price: 9.99
+
+two:
+  week_id: 1
+  name: MyString
+  price: 9.99

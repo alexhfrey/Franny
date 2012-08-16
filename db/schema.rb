@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120805001810) do
+ActiveRecord::Schema.define(:version => 20120815182239) do
 
   create_table "customers", :force => true do |t|
     t.string   "name"
@@ -24,6 +24,23 @@ ActiveRecord::Schema.define(:version => 20120805001810) do
     t.string   "uid"
     t.string   "password_digest"
     t.boolean  "remember"
+    t.decimal  "balance"
+  end
+
+  create_table "extra_orders", :force => true do |t|
+    t.integer  "extra_id"
+    t.integer  "order_id"
+    t.integer  "quantity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "extras", :force => true do |t|
+    t.integer  "week_id"
+    t.string   "name"
+    t.decimal  "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "identities", :force => true do |t|
@@ -50,6 +67,7 @@ ActiveRecord::Schema.define(:version => 20120805001810) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "instructions"
+    t.decimal  "paid"
   end
 
   add_index "orders", ["customer_id"], :name => "index_orders_on_customer_id"

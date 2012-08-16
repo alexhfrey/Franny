@@ -2,15 +2,19 @@ FrannysKitchen::Application.routes.draw do
   resources :settings
   
 
-  resources :orders
-
+  resources :orders do
+	collection do
+		put 'update_multiple'
+	end
+  end
   resources :weeks do
 	resources :orders
   end
 
   resources :customers do
-	resources :orders 
-	get 'admin'
+	collection do
+		get 'admin'
+	end	
   end
   
   resources :identities

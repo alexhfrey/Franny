@@ -48,6 +48,14 @@
 						<td id = "thursday_price"><%= h number_to_currency @week.thursday_price %></td>
 						<td><%= f.number_field :thursday_orders, :value => 0, :class => "span1"%></td> 
 					</tr>
+					<%= f.simple_fields_for :extra_orders do |ff| %>
+					<tr>
+						<td>Extras</td>
+						<td><%= ff.input_field :extra_id, :collection => @week.extras, :value_method => :id  %></td>
+						<td id = "thursday_price"><%= h number_to_currency @week.thursday_price %></td>
+						<td><%= ff.number_field :quantity, :value => 0, :class => "span1"%></td> 
+					</tr>
+					<% end %>
 					
 					<tr>
 						<td><em>     Delivery Fees</em></td>

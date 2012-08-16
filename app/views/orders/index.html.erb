@@ -1,3 +1,4 @@
+<%= simple_form_for :order, :url => update_multiple_orders_path, :html => { :method => :put}  do |f|%>
 <h1>Listing orders</h1>
 
 <table class = "table table-bordered">
@@ -11,7 +12,16 @@
     <th>Tuesday orders</th>
     <th>Wednesday orders</th>
     <th>Thursday orders</th>
-    <th>Instructions</th>
+	<% if defined? @extras %>
+		<%= @extras .each do |o| %>
+			<th><%= o.name %></th>
+		<% end %>
+	<% else %>
+		<th>Extras </th>
+	<% end %>
+	<th>Instructions</th>
+	<th>Due</th>
+	<th>Paid</th>
     <th></th>
     <th></th>
     <th></th>
@@ -20,6 +30,7 @@
   </tr>
 
 <% @orders.each do |order| %>
+ <%= simple_fields_for "order[]", order do |ff| %>
   <tr>
 	<td><%= order.week.start_date %></td>
     <td><%= order.name %></td>
@@ -30,14 +41,28 @@
     <td><%= order.tuesday_orders %></td>
     <td><%= order.wednesday_orders %></td>
     <td><%= order.thursday_orders %></td>
+	<% if defined? @extras %>
+	<%= @extras .each do |o| %>
+		<td><%= order.extras(o.id) %></td>
+		<% end %>
+	<% else %>
+	<td><%= order.extras_in_words %> </td>
+	
+	<% end %>
+	
 	<td><%= order.instructions %> </td>
+	<td><%= order.amount %></td>
+	<td><%= ff.input_field :paid %></td>
     <td><%= link_to 'Show', order %></td>
     <td><%= link_to 'Edit', edit_order_path(order) %></td>
     <td><%= link_to 'Destroy', order, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
-</table>
+ <% end %>
 
+</table>
+<%= f.submit %>
+<% end %>
 <br />
 <% if defined? (@week) %>	
 	<%= link_to 'Export', week_orders_path(@week, :format=>:csv) %>

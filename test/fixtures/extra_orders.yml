@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  extra_id: 1
+  order_id: 1
+  quantity: 1
+
+two:
+  extra_id: 1
+  order_id: 1
+  quantity: 1
