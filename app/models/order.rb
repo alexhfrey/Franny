@@ -26,13 +26,14 @@ class Order < ActiveRecord::Base
 	end
   end
   
+ 
   def extras_in_words
      extra_orders . collect { |eo| eo. in_words } .join(", ")
 	 
   end
   
   def route
-	customer_id.present? ? customer.route : ""
+	customer_id.present? ? customer.delivery_route : ""
   end
   
   def amount

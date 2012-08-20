@@ -20,6 +20,9 @@ class OrdersController < ApplicationController
     end
   end
 
+  def confirmation 
+  
+  end
   
   def update_multiple
 	Order.update(params[:order].keys, params[:order].values)
@@ -84,7 +87,7 @@ class OrdersController < ApplicationController
     
     if @order.save
 		ConfirmationEmail.order_confirmation(@order).deliver
-		redirect_to @order, :notice => 'Order was successfully created.' 
+		render 'confirmation'
       
     else
         render :action => "new" 

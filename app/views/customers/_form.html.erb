@@ -1,4 +1,4 @@
-<%= simple_form_for(@customer, :url => '/auth/identity/register') do |f| %>
+<%= simple_form_for(@customer, :url => '/auth/identity/register'	) do |f| %>
   <% if @customer.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
@@ -20,6 +20,8 @@
     <%= f.input :phone, :input_html => {:name => 'phone'} %>
 
     <%= f.input :address, :input_html =>{:rows => 2, :name => 'address'} %>
+	
+	<%= f.input :delivery_route, :input_html => {:name => 'delivery_route'} %>
 	
 	<%= f.input :password, :as => 'password', :input_html => {:name => 'password'} %>
 	
