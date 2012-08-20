@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     user = Customer.find(auth["uid"])
 	session[:user_id] = user.id
     cookies.permanent.signed[:permanent_user_id] = user.id if user.remember
-    redirect_to root_url, :notice => "Signed in!"
+    redirect_to root_url, :notice => "Thanks for signing in!"
   end
   
 

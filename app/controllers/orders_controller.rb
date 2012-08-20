@@ -86,7 +86,7 @@ class OrdersController < ApplicationController
 	end
     
     if @order.save
-		ConfirmationEmail.order_confirmation(@order).deliver
+		#ConfirmationEmail.order_confirmation(@order).deliver
 		render 'confirmation'
       
     else
