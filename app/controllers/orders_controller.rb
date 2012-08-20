@@ -52,6 +52,7 @@ class OrdersController < ApplicationController
 	
 	@order = @week.orders.build
 	@extra_order = @order.extra_orders.build
+	@extra_order2 = @order.extra_orders.build
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @order }
