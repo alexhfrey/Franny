@@ -2,7 +2,9 @@ class Order < ActiveRecord::Base
   belongs_to :customer
   belongs_to :week
   has_many :extra_orders
-  accepts_nested_attributes_for :extra_orders, reject_if: :all_blank, allow_destroy:true
+  accepts_nested_attributes_for :extra_orders, :reject_if => lambda { |a| a[:extra_id].blank? }
+  
+ 
   
   def self.to_csv(orders)
 	CSV.generate do |csv|
