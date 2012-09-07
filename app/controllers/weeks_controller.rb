@@ -1,6 +1,8 @@
 class WeeksController < ApplicationController
   # GET /weeks
   # GET /weeks.json
+  
+  before_filter :is_admin, :only => [:new, :index, :edit, :update, :create]
   def index
     @weeks = Week.all
 

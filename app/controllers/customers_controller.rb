@@ -1,6 +1,8 @@
 class CustomersController < ApplicationController
   # GET /customers
   # GET /customers.json
+  before_filter :is_admin_or_user, :only => [:edit, :show]
+  before_filter :is_admin, :only => [:index]
   def index
     
 	if params[:q]

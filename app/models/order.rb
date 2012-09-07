@@ -1,6 +1,7 @@
 class Order < ActiveRecord::Base
   belongs_to :customer
   belongs_to :week
+  validates_uniqueness_of :customer_id, :scope => :week_id, :message => "has already placed an order for this week"
   has_many :extra_orders
   accepts_nested_attributes_for :extra_orders, :reject_if => lambda { |a| a[:extra_id].blank? }
   

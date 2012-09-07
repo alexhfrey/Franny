@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
+  before_filter :is_admin, :only => [:edit, :index]
+  
   def index
 	if params[:week_id].present?
 		@week = Week.find(params[:week_id])
