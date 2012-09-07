@@ -28,11 +28,11 @@ class WeeksController < ApplicationController
 	@extra = @week.extras.build()
 	@extra1 = @week.extras.build()
 	@extra2 = @week.extras.build()
-    @week.monday_price = Setting.find(1).value
-	@week.tuesday_price = Setting.find(2).value
-	@week.wednesday_price = Setting.find(3).value
-	@week.thursday_price = Setting.find(4).value
-	@week.delivery_fee = Setting.find(5).value
+    @week.monday_price = Setting.find_by_key("monday_price").value
+	@week.tuesday_price = Setting.find_by_key("tuesday_price").value
+	@week.wednesday_price = Setting.find_by_key("wednesday_price").value
+	@week.thursday_price = Setting.find_by_key("thursday_price").value
+	@week.delivery_fee = Setting.find_by_key("delivery_fee").value
 	
     respond_to do |format|
       format.html # new.html.erb
