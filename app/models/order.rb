@@ -7,13 +7,13 @@ class Order < ActiveRecord::Base
   def self.to_csv(orders)
 	CSV.generate do |csv|
 		csv << ["Name", "Address", "Phone #", "Email", "Route #", "# Meals Monday", "# Meals Tuesday", 
-				"#Meals Wednesday", "#Meals Thursday", "Special Instructions", "Paid", "Owes" ]
+				"#Meals Wednesday", "#Meals Thursday", "Extras", "Special Instructions", "Price" ]
 		orders. each do |order|
 			csv << [order.name, order.address, order.phone, order.email, order.route, order.monday_orders, 
-			order.tuesday_orders, order.wednesday_orders, order.thursday_orders, order.instructions, 0,0]
+			order.tuesday_orders, order.wednesday_orders, order.thursday_orders, order.extras_in_words, order.instructions, order.amount]
 		end
 		csv << ["TOTALS","","" ,"" ,"" , orders.map{|a| a . monday_orders}.sum,  orders.map{|a| a . tuesday_orders}.sum, 
-			orders.map{|a| a . wednesday_orders}.sum, orders.map{|a| a . thursday_orders}.sum,"" , 0,0]
+			orders.map{|a| a . wednesday_orders}.sum, orders.map{|a| a . thursday_orders}.sum,"" ,"", orders.map{|a| a . amount}.sum]
 	end
   end
   
@@ -32,7 +32,7 @@ class Order < ActiveRecord::Base
   end
   
   def route
-	customer_id.present? ? customer.route : ""
+	customer_id.present? ? customer.delivery_route : ""
   end
   
   def amount
