@@ -8,10 +8,11 @@ FrannysKitchen::Application.routes.draw do
 	end
   end
   resources :weeks do
-	resources :orders
+	resources :orders, :only => [:index]
   end
 
   resources :customers do
+	resources :orders, :only => [:index]
 	collection do
 		get 'admin'
 	end	
