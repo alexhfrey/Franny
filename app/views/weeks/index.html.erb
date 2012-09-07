@@ -1,39 +1,38 @@
 <h1>Listing weeks</h1>
+<div><p> 
+Click on "Show Orders" to see the orders for a week. The most recent week will be listed at the top of the table. 
+</p></div>
 
 <table class = "table table-striped table-bordered table-condensed">
   <tr>
     <th>Start date</th>
     <th>Monday item</th>
-    <th>Monday price</th>
+  
     <th>Tuesday item</th>
-    <th>Tuesday price</th>
+  
     <th>Wednesday item</th>
-    <th>Wednesday price</th>
+   
     <th>Thursday item</th>
-    <th>Thursday price</th>
+   
     <th>Delivery fee</th>
-    <th>Comment</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    
+    <th>Show Orders</th>
+    <th>Edit</th>
+    <th>Delete</th>
   </tr>
 
-<% @weeks.each do |week| %>
+<% @weeks .sort_by{|s| DateTime.now - s.start_date} .each  do |week| %>
   <tr>
-    <td><%= link_to week.start_date, week_orders_path(week) %></td>
+    <td><%= week.start_date %></td>
     <td><%= week.monday_item %></td>
-    <td><%= week.monday_price %></td>
     <td><%= week.tuesday_item %></td>
-    <td><%= week.tuesday_price %></td>
+  
     <td><%= week.wednesday_item %></td>
-    <td><%= week.wednesday_price %></td>
     <td><%= week.thursday_item %></td>
-    <td><%= week.thursday_price %></td>
     <td><%= week.delivery_fee %></td>
-    <td><%= week.comment %></td>
     <td><%= link_to 'Show Orders', week_orders_path(week) %></td>
-    <td><%= link_to 'Edit Week', edit_week_path(week) %></td>
-    <td><%= link_to 'Delete Week', week, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Edit', edit_week_path(week) %></td>
+    <td><%= link_to 'Destroy', week, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

@@ -12,18 +12,31 @@ $(document).ready(function(){
 	num = num.substring(0, num.length - (4 * i + 3)) + ',' + num.substring(num.length - (4 * i + 3));
 	return (((sign) ? '' : '-') + '$' + num + '.' + cents);
 }
-	$("input").change(function(event) {
+
+	function computetotal(event) {
+		
 		
 		var deliveryFees = 			((($("#order_monday_orders").val() > 0 )?1:0)
 		                               + (($("#order_tuesday_orders").val() > 0)?1:0)
 									   + (($("#order_wednesday_orders").val() > 0 )?1:0)
 									   + (($("#order_thursday_orders").val() > 0 )?1:0))
 									   * $("#delivery_fee").val();
+									   
+		var extraFees = $("#extra_price").html().replace("$","") * $(".quantity").val();	
+		
 		$("#total").html(formatCurrency($("#order_monday_orders").val() * $("#monday_price").html().replace("$","")
 		                               + $("#order_tuesday_orders").val() * $("#tuesday_price").html().replace("$","")
 									   + $("#order_wednesday_orders").val() * $("#wednesday_price").html().replace("$","")
 									   + $("#order_thursday_orders").val() * $("#thursday_price").html().replace("$","")
-									    + deliveryFees));
-		$("#delivery_fees").html(formatCurrency(deliveryFees));
-		});
+									    + deliveryFees + extraFees) );
+		$("#delivery_fees").html(formatCurrency(deliveryFees)); return;
+	};
+		
+	$("select").change(function(event) {
+	$("#extra_price").html(formatCurrency($("#extra_" + $(".select").val()).html()));
+	computetotal(event);
+	
 	});
+	$("input").change(function(event) { computetotal(event) });
+	
+});	

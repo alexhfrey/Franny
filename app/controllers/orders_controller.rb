@@ -20,6 +20,9 @@ class OrdersController < ApplicationController
     end
   end
 
+  def confirmation 
+  
+  end
   
   def update_multiple
 	Order.update(params[:order].keys, params[:order].values)
@@ -49,6 +52,7 @@ class OrdersController < ApplicationController
 	
 	@order = @week.orders.build
 	@extra_order = @order.extra_orders.build
+	@extra_order2 = @order.extra_orders.build
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @order }
@@ -83,8 +87,8 @@ class OrdersController < ApplicationController
 	end
     
     if @order.save
-		ConfirmationEmail.order_confirmation(@order).deliver
-		redirect_to @order, :notice => 'Order was successfully created.' 
+		#ConfirmationEmail.order_confirmation(@order).deliver
+		render 'confirmation'
       
     else
         render :action => "new" 

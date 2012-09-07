@@ -2,8 +2,12 @@ class CustomersController < ApplicationController
   # GET /customers
   # GET /customers.json
   def index
-    @customers = Customer.all
-
+    
+	if params[:q]
+		@customers = Customer.find_all_by_delivery_route(nil)
+	else
+		@customers = Customer.all
+	end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @customers }
@@ -28,6 +32,9 @@ class CustomersController < ApplicationController
   # GET /customers/new
   # GET /customers/new.json
   def new
+	if current_user 
+		redirect_to new_order_path and return
+	end
     @customer = env['omniauth.identity'] 
 	@customer ||= Customer.new
 
@@ -62,7 +69,9 @@ class CustomersController < ApplicationController
   # PUT /customers/1.json
   def update
     @customer = Customer.find(params[:id])
-
+    unencrypted_password = params[:customer][:password].to_s
+    password_digest = BCrypt::Password.create(unencrypted_password)
+	params[:customer][:password_digest] = password_digest
     respond_to do |format|
       if @customer.update_attributes(params[:customer])
         format.html { redirect_to @customer, :notice => 'Customer was successfully updated.' }

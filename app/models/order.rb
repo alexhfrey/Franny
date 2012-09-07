@@ -65,3 +65,4 @@ class Order < ActiveRecord::Base
 	customer_id.present? ? customer.address : read_attribute(:address)
   end
 end
+

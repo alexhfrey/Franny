@@ -4,3 +4,4 @@
 <h2><%= link_to "See orders for this week", week_orders_path(@week) %></h2>
 <h2><%= link_to "See orders for past weeks", weeks_path %> </h2>
 <h2><%= link_to "Check customer balances", customers_path %> </h2>
+<h2><%= link_to "See new customers", customers_path(:q => "new") %>

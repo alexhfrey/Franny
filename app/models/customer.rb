@@ -7,7 +7,9 @@ validates_presence_of :name
 validates_presence_of :phone
 validates_presence_of :email
 
-
+def balance
+orders.map{|a| a.amount}.sum - orders.sum(:paid)
+end
 
 def self.from_omniauth(auth)
     find_by_provider_and_uid(auth["provider"], auth["uid"]) || create_with_omniauth(auth)

@@ -26,6 +26,8 @@ class WeeksController < ApplicationController
   def new
     @week = Week.new
 	@extra = @week.extras.build()
+	@extra1 = @week.extras.build()
+	@extra2 = @week.extras.build()
     @week.monday_price = Setting.find(1).value
 	@week.tuesday_price = Setting.find(2).value
 	@week.wednesday_price = Setting.find(3).value

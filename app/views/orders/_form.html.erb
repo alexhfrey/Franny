@@ -1,4 +1,10 @@
 <%= simple_form_for @order, :html => {:class => "form-inline"} do |f| %>
+<div style="visibility: hidden"> 
+	<% @week.extras .each do |e|%>
+		<div id=<%="extra_" + e.id.to_s %>><%=e.price %></div>
+	<% end %>
+</div>
+
 <input type="hidden" id="delivery_fee" value = "<%=@week.delivery_fee %>"</input>
   <% if @order.errors.any? %>
     <div id="error_explanation">
@@ -51,9 +57,9 @@
 					<%= f.simple_fields_for :extra_orders do |ff| %>
 					<tr>
 						<td>Extras</td>
-						<td><%= ff.input_field :extra_id, :collection => @week.extras, :value_method => :id  %></td>
-						<td id = "thursday_price"><%= h number_to_currency @week.thursday_price %></td>
-						<td><%= ff.number_field :quantity, :value => 0, :class => "span1"%></td> 
+						<td id = "extra_id"><%= ff.input_field :extra_id, :collection => @week.extras, :value_method => :id  %></td>
+						<td id = "extra_price">$0.00</td>
+						<td><%= ff.number_field :quantity, :value => 0, :class => "span1 quantity"%></td> 
 					</tr>
 					<% end %>
 					

@@ -1,5 +1,41 @@
-<h1>New customer</h1>
+<h1>Franny's Kitchen - Create an Account</h1>
+<p>Already have an account? <%= link_to "Login here", signin_path %> </p>
+<p>Please create an account with Franny's below so that we can securely save your information. You can use your email address and password to
+place orders in the future. If you wish, you may also <%= link_to 'Continue without creating an account', new_order_path %></p> <br/>
+<%= simple_form_for(@customer, :url => '/auth/identity/register'	) do |f| %>
+  <% if @customer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
 
-<%= render 'form' %>
+      <ul>
+      <% @customer.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
 
-<%= link_to 'Back', customers_path %>
+ 
+    <%= f.input :name, :input_html => {:name => 'name'} %>
+
+    <%= f.input :email, :input_html => {:name => 'email'} %>
+
+    <%= f.input :phone, :input_html => {:name => 'phone'} %>
+
+    <%= f.input :address, :input_html =>{:rows => 2, :name => 'address'} %>
+	
+	
+	
+	<%= f.input :password, :as => 'password', :input_html => {:name => 'password'} %>
+	
+	<%= f.input :password_confirmation, :as => 'password', :input_html => {:name => 'password_confirmation'} %>
+	
+	<%= f.input :remember, :label => "Remember me on this computer?" %> <br/> <br/>
+
+    <%= f.submit %>
+
+<% end %>
+
+
+
