@@ -65,7 +65,7 @@
 					
 					<tr>
 						<td><em>     Delivery Fees</em></td>
-						<td>$<%=@week.delivery_fee%> per day </td>
+						<td>$<%= h number_to_currency @week.delivery_fee %> per day </td>
 						<td id = "delivery_fees">$0.00</td>
 						<td></td> 
 					</tr>
@@ -89,7 +89,8 @@
     <%= f.input :email %>      
     <%= f.input :phone %>
    <% end %>
-	<%= f.input :instructions, :input_html =>{:size => "25x3"}  %>
+    <div>Instructions and/or Requests: </div>
+	<%= f.input_field :instructions, :input_html =>{:size => "25x3"}  %>
    
 
   
