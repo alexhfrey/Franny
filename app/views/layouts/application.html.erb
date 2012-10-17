@@ -16,9 +16,10 @@
           <nav>
             <ul class="nav pull-right">
               <li><%= link_to "Home",    "http://frannyskitchensf.com" %> </li>
-			  <% if current_user.id == 5 || current_user.id == 1 %> <li> <%=link_to "Admin", admin_path %> </li> <%end%>
 			  <li><%= link_to "Orders", root_path %></li>
 			  <% if current_user %>
+			   <% if current_user.id == 5 || current_user.id == 1 %> <li> <%=link_to "Admin", admin_path %> </li> <%end%>
+			 
 				<li><%= link_to current_user.name + '\'s Account', current_user %> </li>
 				<li><%= link_to "Sign out", signout_path %></li>	
 			  <% else %>
