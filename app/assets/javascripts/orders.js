@@ -21,9 +21,14 @@ $(document).ready(function(){
 									   + (($("#order_wednesday_orders").val() > 0 )?1:0)
 									   + (($("#order_thursday_orders").val() > 0 )?1:0))
 									   * $("#delivery_fee").val();
-									   
-		var extraFees = $("#extra_price").html().replace("$","") * $(".quantity").val();	
-		
+		var index = 0; var sum = 0;							   
+		 $(".extra_price").each(function(){
+				
+				var sum1 = $(this).html().replace("$","") * $(".quantity"). eq(index).val();	
+				sum += sum1;
+				index += 1;
+			});	
+		var extraFees = sum;
 		$("#total").html(formatCurrency($("#order_monday_orders").val() * $("#monday_price").html().replace("$","")
 		                               + $("#order_tuesday_orders").val() * $("#tuesday_price").html().replace("$","")
 									   + $("#order_wednesday_orders").val() * $("#wednesday_price").html().replace("$","")

@@ -3,14 +3,14 @@ class Order < ActiveRecord::Base
   belongs_to :week
   validates_uniqueness_of :customer_id, :scope => :week_id, :message => "has already placed an order for this week"
   has_many :extra_orders
-  accepts_nested_attributes_for :extra_orders, :reject_if => lambda { |a| a[:extra_id].blank? }
+  accepts_nested_attributes_for :extra_orders
   
   def self.to_csv(orders)
 	CSV.generate do |csv|
-		csv << ["Name", "Address", "Phone #", "Email", "Route #", "# Meals Monday", "# Meals Tuesday", 
-				"#Meals Wednesday", "#Meals Thursday", "Extras", "Special Instructions", "Price" ]
+		csv << ["Name", "Address", "Route #", "Mon", "Tue", 
+				"Wed", "Thur", "Extras", "Instructions", "Price" ]
 		orders. each do |order|
-			csv << [order.name, order.address, order.phone, order.email, order.route, order.monday_orders, 
+			csv << [order.name, order.address, order.route, order.monday_orders, 
 			order.tuesday_orders, order.wednesday_orders, order.thursday_orders, order.extras_in_words, order.instructions, order.amount]
 		end
 		csv << ["TOTALS","","" ,"" ,"" , orders.map{|a| a . monday_orders}.sum,  orders.map{|a| a . tuesday_orders}.sum, 

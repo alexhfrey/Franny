@@ -52,9 +52,12 @@ class OrdersController < ApplicationController
 		@week = Week.last
 	end
 	
-	@order = @week.orders.build
-	@extra_order = @order.extra_orders.build
-	@extra_order2 = @order.extra_orders.build
+	@order = @week.orders.build()
+	@week .extras .each do |extra|
+		eo = @order.extra_orders.build()
+		eo.extra_id = extra.id
+	end
+	
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @order }
@@ -89,7 +92,7 @@ class OrdersController < ApplicationController
 	end
     
     if @order.save
-		#ConfirmationEmail.order_confirmation(@order).deliver
+		ConfirmationEmail.order_confirmation(@order).deliver
 		render 'confirmation'
       
     else

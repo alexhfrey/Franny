@@ -76,7 +76,7 @@ class CustomersController < ApplicationController
 	params[:customer][:password_digest] = password_digest
     respond_to do |format|
       if @customer.update_attributes(params[:customer])
-        format.html { redirect_to @customer, :notice => 'Customer was successfully updated.' }
+        format.html { redirect_to admin_path, :notice => 'Customer was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render :action => "edit" }

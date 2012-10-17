@@ -5,7 +5,7 @@
 	<% end %>
 </div>
 
-<input type="hidden" id="delivery_fee" value = "<%=@week.delivery_fee %>"</input>
+<input type="hidden" id="delivery_fee" value = "<%=@week.delivery_fee %>"></input>
   <% if @order.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
@@ -31,34 +31,36 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td>Monday</td>
+						<td><strong>Monday</strong></td>
 						<td><%= @week.monday_item %></td>
 						<td id = "monday_price"><%= h number_to_currency @week.monday_price %></td>
 						<td><%= f.number_field :monday_orders, :value => 0, :class => "span1"%></td> 
 					</tr>
 					<tr>
-						<td>Tuesday</td>
+						<td><strong>Tuesday</strong></td>
 						<td><%= @week.tuesday_item %></td>
 						<td id = "tuesday_price"><%= h number_to_currency @week.tuesday_price %></td>
 						<td><%= f.number_field :tuesday_orders, :value => 0, :class => "span1"%></td> 
 					</tr>
 					<tr>
-						<td>Wednesday</td>
+						<td><strong>Wednesday</strong></td>
 						<td><%= @week.wednesday_item %></td>
 						<td id = "wednesday_price"><%= h number_to_currency @week.wednesday_price %></td>
 						<td><%= f.number_field :wednesday_orders, :value => 0, :class => "span1"%></td> 
 					</tr>
 					<tr>
-						<td>Thursday</td>
+						<td><strong>Thursday</strong></td>
 						<td><%= @week.thursday_item %></td>
 						<td id = "thursday_price"><%= h number_to_currency @week.thursday_price %></td>
 						<td><%= f.number_field :thursday_orders, :value => 0, :class => "span1"%></td> 
 					</tr>
 					<%= f.simple_fields_for :extra_orders do |ff| %>
-					<tr>
-						<td>Extras</td>
-						<td id = "extra_id"><%= ff.input_field :extra_id, :collection => @week.extras, :value_method => :id  %></td>
-						<td id = "extra_price">$0.00</td>
+					
+					<tr><%= ff.hidden_field :extra_id %>
+						<td><strong>Extras</strong></td>
+						
+						<td><%= ff .object .extra .name%></td>
+						<td class = "extra_price"><%= h number_to_currency ff .object .extra .price %></td>
 						<td><%= ff.number_field :quantity, :value => 0, :class => "span1 quantity"%></td> 
 					</tr>
 					<% end %>
@@ -89,8 +91,8 @@
     <%= f.input :email %>      
     <%= f.input :phone %>
    <% end %>
-    <div>Instructions and/or Requests: </div>
-	<%= f.input_field :instructions, :input_html =>{:size => "25x3"}  %>
+    
+	<%= f.input :instructions,  :label => "Instructions and/or Requests", :input_html => {:rows => 5}  %>
    
 
   

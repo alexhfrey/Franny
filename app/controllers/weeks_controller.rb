@@ -27,10 +27,8 @@ class WeeksController < ApplicationController
   # GET /weeks/new.json
   def new
     @week = Week.new
-	@extra = @week.extras.build()
-	@extra1 = @week.extras.build()
-	@extra2 = @week.extras.build()
-    @week.monday_price = Setting.find_by_key("monday_price").value
+	8 . times {@week.extras.build() }
+	@week.monday_price = Setting.find_by_key("monday_price").value
 	@week.tuesday_price = Setting.find_by_key("tuesday_price").value
 	@week.wednesday_price = Setting.find_by_key("wednesday_price").value
 	@week.thursday_price = Setting.find_by_key("thursday_price").value
@@ -54,7 +52,7 @@ class WeeksController < ApplicationController
 
     respond_to do |format|
       if @week.save
-        format.html { redirect_to @week, :notice => 'Week was successfully created.' }
+        format.html { redirect_to admin_path, :notice => 'Week was successfully created.' }
         format.json { render :json => @week, :status => :created, :location => @week }
       else
         format.html { render :action => "new" }
