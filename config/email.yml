@@ -6,9 +6,9 @@ development:
   :password: back6688GM
   :enable_starttls_auto: true
 production:
-  :address: smtp.gmail.com
+  :address: smtp.sendgrid.net
   :port: 587
   :authentication: plain
-  :user_name: xxx
-  :password: yyy
+  :user_name: franny
+  :password: 8Chickens
   :enable_starttls_auto: true
