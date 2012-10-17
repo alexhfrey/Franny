@@ -4,6 +4,6 @@ ActionMailer::Base.smtp_settings = {
   :authentication => :plain,
   :user_name      => 'franny',
   :password       => '8Chickens',
-  :domain         => 'frannyskitchensf.com'
+  :domain         => 'heroku.com'
 }
 ActionMailer::Base.delivery_method = :smtp
