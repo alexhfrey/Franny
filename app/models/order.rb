@@ -37,7 +37,7 @@ class Order < ActiveRecord::Base
   end
   
   def amount
-	sub_total + delivery_charge
+	sub_total + delivery_charge + extras_charge
   end
   
   def email
@@ -47,6 +47,10 @@ class Order < ActiveRecord::Base
   def sub_total
    
 	monday_orders * week.monday_price + tuesday_orders * week.tuesday_price + wednesday_orders * week.wednesday_price + thursday_orders * week.thursday_price 
+  end
+  
+  def extras_charge
+	extra_orders.map{|a| a.extra.price * a.quantity}.sum
   end
   
   def delivery_charge
