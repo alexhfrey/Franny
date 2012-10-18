@@ -4,10 +4,12 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-    <h1>Thanks for your order <%= @order.name %></h1>
+    <p>Thanks for your order <%= @order.name %></p>
     <p>
       We have you down for <%= @order.monday_orders %> Monday orders, <%= @order.tuesday_orders %> Tuesday orders,
 	  <%= @order.wednesday_orders %> Wednesday orders, and <%= @order.thursday_orders %> Thursday orders. 
+	  <% if @order.extra_orders %> You also ordered: <%= @order.extras_in_words %>. <% end %>
+	  
     </p>
     <p>
       Your total order, including delivery charges, comes to <strong><%= @order.amount %></strong>. 
