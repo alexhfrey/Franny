@@ -42,6 +42,7 @@ $(document).ready(function(){
 	computetotal(event);
 	
 	});
+	computetotal(0);
 	$("input").change(function(event) { computetotal(event) });
 	
 });	

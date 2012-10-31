@@ -38,25 +38,25 @@
 						<td><strong>Monday</strong></td>
 						<td><%= @week.monday_item %></td>
 						<td id = "monday_price"><%= h number_to_currency @week.monday_price %></td>
-						<td><%= f.number_field :monday_orders, :value => 0, :class => "span1"%></td> 
+						<td><%= f.number_field :monday_orders, :class => "span1"%></td> 
 					</tr>
 					<tr>
 						<td><strong>Tuesday</strong></td>
 						<td><%= @week.tuesday_item %></td>
 						<td id = "tuesday_price"><%= h number_to_currency @week.tuesday_price %></td>
-						<td><%= f.number_field :tuesday_orders, :value => 0, :class => "span1"%></td> 
+						<td><%= f.number_field :tuesday_orders,  :class => "span1"%></td> 
 					</tr>
 					<tr>
 						<td><strong>Wednesday</strong></td>
 						<td><%= @week.wednesday_item %></td>
 						<td id = "wednesday_price"><%= h number_to_currency @week.wednesday_price %></td>
-						<td><%= f.number_field :wednesday_orders, :value => 0, :class => "span1"%></td> 
+						<td><%= f.number_field :wednesday_orders,  :class => "span1"%></td> 
 					</tr>
 					<tr>
 						<td><strong>Thursday</strong></td>
 						<td><%= @week.thursday_item %></td>
 						<td id = "thursday_price"><%= h number_to_currency @week.thursday_price %></td>
-						<td><%= f.number_field :thursday_orders, :value => 0, :class => "span1"%></td> 
+						<td><%= f.number_field :thursday_orders,  :class => "span1"%></td> 
 					</tr>
 					<%= f.simple_fields_for :extra_orders do |ff| %>
 					
@@ -65,7 +65,7 @@
 						
 						<td><%= ff .object .extra .name%></td>
 						<td class = "extra_price"><%= h number_to_currency ff .object .extra .price %></td>
-						<td><%= ff.number_field :quantity, :value => 0, :class => "span1 quantity"%></td> 
+						<td><%= ff.number_field :quantity,  :class => "span1 quantity"%></td> 
 					</tr>
 					<% end %>
 					
