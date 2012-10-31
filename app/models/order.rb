@@ -13,7 +13,7 @@ class Order < ActiveRecord::Base
 			csv << [order.name, order.address, order.route, order.monday_orders, 
 			order.tuesday_orders, order.wednesday_orders, order.thursday_orders, order.extras_in_words, order.instructions, order.amount]
 		end
-		csv << ["TOTALS","","" ,"" ,"" , orders.map{|a| a . monday_orders}.sum,  orders.map{|a| a . tuesday_orders}.sum, 
+		csv << ["TOTALS","","" , orders.map{|a| a . monday_orders}.sum,  orders.map{|a| a . tuesday_orders}.sum, 
 			orders.map{|a| a . wednesday_orders}.sum, orders.map{|a| a . thursday_orders}.sum,"" ,"", orders.map{|a| a . amount}.sum]
 	end
   end
