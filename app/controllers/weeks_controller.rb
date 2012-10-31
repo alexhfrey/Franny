@@ -9,6 +9,7 @@ class WeeksController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @weeks }
+      
     end
   end
 
