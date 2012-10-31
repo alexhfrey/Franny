@@ -53,9 +53,14 @@ class OrdersController < ApplicationController
 	end
 	
 	@order = @week.orders.build()
+	@order.monday_orders = 0
+	@order.tuesday_orders = 0
+	@order.wednesday_orders = 0
+	@order.thursday_orders =0
 	@week .extras .each do |extra|
 		eo = @order.extra_orders.build()
 		eo.extra_id = extra.id
+		eo.quantity = 0
 	end
 	
     respond_to do |format|
