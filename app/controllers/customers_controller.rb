@@ -35,7 +35,12 @@ class CustomersController < ApplicationController
   # GET /customers/new.json
   def new
 	if current_user 
-		redirect_to new_order_path and return
+		if Week .last .orders .map { |a| a.customer_id } .include?(id)
+			order = Order.find_by_customer_id_and_week_id(id, Week.last.id)
+			redirect_to edit_order_path(order) and return
+		else
+			redirect_to new_order_path and return
+		end
 	end
     @customer = env['omniauth.identity'] 
 	@customer ||= Customer.new
