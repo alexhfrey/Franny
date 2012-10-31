@@ -35,8 +35,8 @@ class CustomersController < ApplicationController
   # GET /customers/new.json
   def new
 	if current_user 
-		if Week .last .orders .map { |a| a.customer_id } .include?(self .id)
-			order = Order.find_by_customer_id_and_week_id(id, Week.last.id)
+		if Week .last .orders .map { |a| a.customer_id } .include?(current_user.id)
+			order = Order.find_by_customer_id_and_week_id(current_user.id, Week.last.id)
 			redirect_to edit_order_path(order) and return
 		else
 			redirect_to new_order_path and return
