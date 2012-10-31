@@ -4,17 +4,24 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-    <p>Thanks for your order <%= @order.name %></p>
+    <p>Dear <%= @order.first_name %></p>
     <p>
-      We have you down for <%= @order.monday_orders %> Monday orders, <%= @order.tuesday_orders %> Tuesday orders,
-	  <%= @order.wednesday_orders %> Wednesday orders, and <%= @order.thursday_orders %> Thursday orders. 
-	  <% if @order.extra_orders %> You also ordered: <%= @order.extras_in_words %>. <% end %>
+      We have you down for the following meals next week:
+<ul>
+<li>      <%= @order.monday_orders %> Monday orders </li>
+<li> <%= @order.tuesday_orders %> Tuesday orders </li>
+<li> <%= @order.wednesday_orders %> Wednesday orders</li>
+<li> <%= @order.thursday_orders %> Thursday orders</li>
+<% if @order.extra_orders %> <li> <%= @order.extras_in_words %> </li> <% end %>
+</ul><br/>
 	  
     </p>
     <p>
       Your total order, including delivery charges, comes to <strong><%= @order.amount %></strong>. 
-    </p>
+    </p><br/>
     <p>Full payment is due with the first delivery of the week. Checks should be made out to Frances Sanahuja. You can leave
 	them at your front door for us to pick up, or you can mail them to 147 Dublin Street, San Francisco, CA 94112. </p>
+  <br/><p>Thanks for your order!</p><br/>
+  <p>Franny</p>
   </body>
 </html>

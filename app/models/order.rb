@@ -11,7 +11,7 @@ class Order < ActiveRecord::Base
 				"Wed", "Thur", "Extras", "Instructions", "Price" ]
 		orders. each do |order|
 			csv << [order.name, order.address.gsub(/\n/, " "), order.route, order.monday_orders, 
-			order.tuesday_orders, order.wednesday_orders, order.thursday_orders, order.extras_in_words, order.instructions, order.amount]
+			order.tuesday_orders, order.wednesday_orders, order.thursday_orders, '"' + order.extras_in_words + '"', order.instructions, order.amount]
 		end
 		csv << ["TOTALS","","", orders.map{|a| a . monday_orders}.sum,  orders.map{|a| a . tuesday_orders}.sum, 
 			orders.map{|a| a . wednesday_orders}.sum, orders.map{|a| a . thursday_orders}.sum,"" ,"", orders.map{|a| a . amount}.sum]
@@ -63,6 +63,9 @@ class Order < ActiveRecord::Base
 	customer_id.present? ? customer.name : read_attribute(:name)
   end
 	
+  def first_name
+      name.split(" ").first
+  end  
   
   
 		
