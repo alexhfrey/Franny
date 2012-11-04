@@ -17,7 +17,7 @@
 	  
     </p>
     <p>
-      Your total order, including delivery charges, comes to <strong><%= @order.amount %></strong>. 
+      Your total order, including delivery charges, comes to <strong><%= h number_to_currency @order.amount %></strong>. 
     </p><br/>
     <p>Full payment is due with the first delivery of the week. Checks should be made out to Frances Sanahuja. You can leave
 	them at your front door for us to pick up, or you can mail them to 147 Dublin Street, San Francisco, CA 94112. </p>
