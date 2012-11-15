@@ -2,11 +2,11 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   before_filter :is_admin, :only => [:edit, :index]
-  
+ 
   def index
 	if params[:week_id].present?
 		@week = Week.find(params[:week_id])
-		@orders = @week.orders
+		@orders = @week.orders .sort_by {|x| x .first_name}
 		@extras = @week.extras
 	elsif params[:customer_id].present?
 		@customer = Customer.find(params[:customer_id])
@@ -45,12 +45,18 @@ class OrdersController < ApplicationController
   # GET /orders/new
   # GET /orders/new.json
   def new
-  
+	unless current_user
+		redirect_to new_customer_path and return
+	end
+	
+	
 	if params[:week_id].present?
 		@week = Week.find(params[:week_id])
 	else
 		@week = Week.last
 	end
+	
+	date = week.start_date - 1.days
 	
 	@order = @week.orders.build()
 	@order.monday_orders = 0
@@ -69,6 +75,9 @@ class OrdersController < ApplicationController
     end
   end
 
+  def late
+  
+  end
   # GET /orders/1/edit
   def edit
     @order = Order.find(params[:id])

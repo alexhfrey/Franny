@@ -7,6 +7,8 @@ validates_presence_of :name
 validates_presence_of :phone
 validates_presence_of :email
 
+validates :email, :email_format => {:message => 'is not in the form of an email address - please check'}
+
 def balance
 orders.map{|a| a.amount}.sum - orders.sum(:paid)
 end

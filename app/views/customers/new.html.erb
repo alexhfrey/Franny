@@ -1,7 +1,7 @@
 <h1>Franny's Kitchen - Create an Account</h1>
 <p>Already have an account? <%= link_to "Login here", signin_path %> </p>
 <p>Please create an account with Franny's below so that we can securely save your information. You can use your email address and password to
-place orders in the future. If you wish, you may also <%= link_to 'Continue without creating an account', new_order_path %></p> <br/>
+place orders in the future. We do not store any sensitive information other than your address and email address so that we can find you and reach you. </p> <br/>
 <%= simple_form_for(@customer, :url => '/auth/identity/register'	) do |f| %>
   <% if @customer.errors.any? %>
     <div id="error_explanation">
@@ -31,7 +31,7 @@ place orders in the future. If you wish, you may also <%= link_to 'Continue with
 	
 	<%= f.input :password_confirmation, :as => 'password', :input_html => {:name => 'password_confirmation'} %>
 	
-	<%= f.input :remember, :label => "Remember me on this computer?", :value => TRUE %> <br/> <br/>
+	 <br/> <br/>
 
     <%= f.submit %>
 

@@ -4,6 +4,7 @@ FrannysKitchen::Application.routes.draw do
 
   resources :orders do
 	collection do
+		get 'late'
 		put 'update_multiple'
 	end
   end

@@ -34,7 +34,11 @@ class CustomersController < ApplicationController
   # GET /customers/new
   # GET /customers/new.json
   def new
-	if current_user 
+	if current_user
+		date = Week.last .start_date - 1.days
+		if Time.zone.now > Time.zone.local(date.year, date.month, date.day, 13, 0, 0, 0)
+			redirect_to '/orders/late' and return
+		end
 		if Week .last .orders .map { |a| a.customer_id } .include?(current_user.id)
 			order = Order.find_by_customer_id_and_week_id(current_user.id, Week.last.id)
 			redirect_to edit_order_path(order) and return

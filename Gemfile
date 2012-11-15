@@ -6,6 +6,9 @@ gem 'bootstrap-sass', '2.0.0'
 
 gem 'simple_form'
 
+gem 'validates_email_format_of'
+gem 'validates_timeliness'
+
 group :development do
 	gem 'sqlite3'
 end

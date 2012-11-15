@@ -18,6 +18,9 @@
     </p>
     <p>
       Your total order, including delivery charges, comes to <strong><%= h number_to_currency @order.amount %></strong>. 
+      <% if @order .customer .balance > @order .amount %>
+      Your total balance, including any unpaid balance from previous orders, comes to <%= @order. customer .balance %>.
+      <% end %>
     </p><br/>
     <p>Full payment is due with the first delivery of the week. Checks should be made out to Frances Sanahuja. You can leave
 	them at your front door for us to pick up, or you can mail them to 147 Dublin Street, San Francisco, CA 94112. </p>
